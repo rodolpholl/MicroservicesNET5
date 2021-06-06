@@ -100,7 +100,7 @@ namespace Catalog.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
             try
@@ -111,14 +111,14 @@ namespace Catalog.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error to create Product:\n {JsonSerializer.Serialize(product)}.\n {ex.Message}");
-                return NotFound();
+                return StatusCode(StatusCodes.Status400BadRequest);
             }
 
         }
 
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<bool>> UpdateProduct([FromBody] Product product)
         {
             try
@@ -129,25 +129,25 @@ namespace Catalog.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error on try to update Product with id {product.Id}:\n {JsonSerializer.Serialize(product)}.\n {ex.Message}");
-                return NotFound();
+                return StatusCode(StatusCodes.Status400BadRequest);
             }
 
         }
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<bool>> DeleteProduct(string id)
         {
             try
             {
                 var result = await _repository.DeleteProduct(id);
-                return Ok(result);
+                return StatusCode(StatusCodes.Status400BadRequest);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error on try to delete Product with id {id}.\n {ex.Message}");
-                return NotFound();
+                return StatusCode(StatusCodes.Status400BadRequest);
             }
 
         }

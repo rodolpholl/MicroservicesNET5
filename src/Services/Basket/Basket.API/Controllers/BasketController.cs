@@ -25,7 +25,7 @@ namespace Basket.API.Controllers
 
         [HttpGet("{userName}",Name = "GetBasket")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ShoppingCart))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {
             try
@@ -44,8 +44,8 @@ namespace Basket.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ShoppingCart))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
             try
@@ -61,8 +61,8 @@ namespace Basket.API.Controllers
         }
 
         [HttpDelete]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ShoppingCart))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> DeleteBasket(string userName)
         {
             try
