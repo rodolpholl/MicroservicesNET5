@@ -12,11 +12,12 @@ namespace Basket.API.Entities
         public decimal UnitPrice { get; set; }  
         public string ProductId { get; set; }
         public string ProductName { get; set; }
+        public decimal DiscountValue { get; set; }
 
         public decimal TotalPrice { 
             get
             {
-                return Quantity * UnitPrice;
+                return Quantity * (UnitPrice - DiscountValue);
             }
         }
     }
