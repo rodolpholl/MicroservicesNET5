@@ -16,9 +16,11 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
+# Message Queue
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
+# Optional Support
   pgadmin:
     image: dpage/pgadmin4
 

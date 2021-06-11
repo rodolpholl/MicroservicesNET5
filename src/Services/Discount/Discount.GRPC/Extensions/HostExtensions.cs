@@ -22,11 +22,13 @@ namespace Discount.GRPC.Extensions
 
                 try
                 {
-                    logger.LogInformation("Migrating postgresql database. ");
+                    logger.LogInformation("Connecting Database... ");
 
                     using var connection = new NpgsqlConnection
                         (configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
                     connection.Open();
+
+                    logger.LogInformation("Migrating postgresql database. ");
 
                     using var command = new NpgsqlCommand
                     {

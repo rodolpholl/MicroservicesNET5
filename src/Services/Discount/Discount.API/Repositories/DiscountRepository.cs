@@ -44,10 +44,7 @@ namespace Discount.API.Repositories
                 ("insert into Coupon(ProductName, Description, Amount) Values (@ProductName, @Description, @Amount)",
                     new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount });
 
-            if (affected == null)
-                return false;
-
-            return true;
+            return !(affected == null);
         }
 
         public async Task<bool> UpdateDiscount(Coupon coupon)
@@ -60,10 +57,7 @@ namespace Discount.API.Repositories
                 ("update Coupon SET  ProductName=@ProductName, Description=@Description, Amount=@Amount where Id = @Id",
                     new { ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount, Id = coupon.Id });
 
-            if (affected == 0)
-                return false;
-
-            return true;
+            return !(affected == 0);
         }
 
         public async Task<bool> DeleteDiscount(string productName)
@@ -76,10 +70,8 @@ namespace Discount.API.Repositories
                 ("delete from  Coupon where ProductName=@ProductName",
                     new { ProductName = productName });
 
-            if (affected == 0)
-                return false;
-
-            return true;
+            return !(affected == 0);
+                
         }
 
         

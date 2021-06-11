@@ -15,11 +15,11 @@ namespace Discount.API.Controllers
         private readonly IDiscountRepository _repository;
         private ILogger<DiscountController> _logger;
 
-        public DiscountController(IDiscountRepository repository)
+        public DiscountController(IDiscountRepository repository, ILogger<DiscountController> logger)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-
 
         [HttpGet("{productName}", Name = "GetDiscount")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Coupon))]

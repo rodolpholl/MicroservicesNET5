@@ -1,0 +1,17 @@
+{
+  "id": "5188d696-fe8b-49a8-aa5b-dd35765087ff",
+  "importStreams": [
+    {
+      "id": "0884ed60-1a42-4fbf-8ade-65c86ccf6083",
+      "name": "discount.grpc",
+      "importerName": "GrpcServerReflection",
+      "createMissingOperations": true,
+      "options": {
+        "endpoint": "http://localhost:8003/DiscountProtoService/GetDiscount",
+        "disableServerCertificateValidation": true
+      }
+    }
+  ],
+  "authConfigs": [],
+  "certificates": []
+}
