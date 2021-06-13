@@ -107,7 +107,7 @@ services:
     depends_on:
       - discountdb
     ports:
-      - "8010:80"
+      - "8003:80"
 
 
   ordering.api:
@@ -124,3 +124,14 @@ services:
     ports:
       - "8004:80"
       
+  ocelotapigw:
+    container_name: ocelotapigw
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - catalog.api
+      - basket.api
+      - discount.api
+      - ordering.api
+    ports:
+      - "8010:80"
